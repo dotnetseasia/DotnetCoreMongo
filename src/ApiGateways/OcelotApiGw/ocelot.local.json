@@ -1,0 +1,45 @@
+{
+  "Routes": [
+    //CompanyAdmin API
+    {
+      "DownstreamPathTemplate": "/api/v1/CompanyAdmin",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8000"
+        }
+      ],
+      "UpstreamPathTemplate": "/CompanyAdmin",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "FileCacheOptions": { "TtlSeconds": 30 }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/CompanyAdmin/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8000"
+        }
+      ],
+      "UpstreamPathTemplate": "/CompanyAdmin/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]      
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/CompanyAdmin/GetProductByCategory/{category}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8000"
+        }
+      ],
+      "UpstreamPathTemplate": "/CompanyAdmin/GetProductByCategory/{category}",
+      "UpstreamHttpMethod": [ "GET" ]
+    } 
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5010"
+  }
+}

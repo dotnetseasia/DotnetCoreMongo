@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  companyadmin.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8000:80"
+
+  ocelotapigw:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8001:80"
+
+  seasiaconnect.db:
+    container_name: catalogdb
+    restart: always
+    ports:
+        - "27017:27017"
+    volumes:
+        - ${WEBAPP_STORAGE_HOME}/site:/data/db

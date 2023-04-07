@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  companyadmin.api:
+    image: ${DOCKER_REGISTRY-}companyadminapi
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+
+  ocelotapigw:
+    image: ${DOCKER_REGISTRY-}ocelotapigw
+    build:
+      context: .
+      dockerfile: ApiGateways/OcelotApiGw/Dockerfile
+
+  seasiaconnect.db:
+    image: mongo
+
+  

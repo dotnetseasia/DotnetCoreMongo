@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: companyadminapi-deployment
+ labels:
+   app: companyadminapi
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: companyadminapi
+ template:
+   metadata:
+     labels:
+       app: companyadminapi
+   spec:
+     containers:
+       - name: companyadminapi
+         image: chauhanvinay/companyadminapi:latest
+         imagePullPolicy: IfNotPresent
+         ports:
+          - containerPort: 80
+         env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: DatabaseSettings__ConnectionString
+            value: mongodb://username:password@mongo-service:27017
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: companyadminapi-service
+spec:
+ type: NodePort
+ selector:
+  app: companyadminapi
+ ports:
+   - protocol: TCP
+     port: 8000
+     targetPort: 80
+     nodePort: 31000

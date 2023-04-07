@@ -1,0 +1,35 @@
+{
+  "Routes": [
+    //CompanyAdmin API
+
+    {
+      "DownstreamPathTemplate": "/api/UserManagement/GetUserDetail/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "59556"
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      //"RouteClaimsRequirement": {
+      //  "Role": "Admin"
+      //},
+      //,
+      //"AddHeadersToRequest": {
+      //  "claims_name": "Claims[nameid] > value > |",
+      //  "claims_role": "Claims[Role] > value > |" 
+      //}
+      "UpstreamPathTemplate": "/api/CompanyAdmin/api/UserManagement/GetUserDetail/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "companyadmin",
+      "FileCacheOptions": { "TtlSeconds": 30 }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5010"
+  }
+}
